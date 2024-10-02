@@ -17,42 +17,17 @@ import java.util.stream.Collectors;
 public class TaskService {
     private final TaskRepository repository;
 
-    /**
-     * Добавление новой задачи.
-     *
-     * @param task - новая задача.
-     * @return - задача.
-     */
     public Task addTask(Task task) {
         return repository.save(task);
     }
-
-    /**
-     * Получить все задачи.
-     *
-     * @return список задач.
-     */
     public List<Task> getAllTasks() {
         return repository.findAll();
     }
 
-    /**
-     * Просмотр задач по статусу
-     *
-     * @param status статус задачи
-     * @return список задач одного статуса
-     */
     public List<Task> findByStatus(TaskStatus status) {
         return repository.findByStatus(status);
     }
 
-    /**
-     * Изменение статуса задачи
-     *
-     * @param id   ID задачи
-     * @param task задача с новым статусом
-     * @return сохраняет новый статут у задачи
-     */
     public Task updateTaskStatus(Long id, Task task) {
         Optional<Task> optionalTask = repository.findById(id);
         if (optionalTask.isPresent()) {
